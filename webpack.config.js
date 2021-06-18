@@ -21,17 +21,29 @@ module.exports = {
 
   //   resolveセクションは、モジュールとして解決するファイルの拡張子を指定する
   resolve: {
-    extensions: [".js", ".ts", ".jsx"],
+    extensions: [".js", ".ts", ".tsx"],
   },
 
   // outputセクションは、出力するファイルを指定する
-  // this.以下の設定はwebpack.config.jsのおいてあるディレクトリにあるdistというディレクトリに対して
-  // this.ファイル名index.jsで出力する。
+  // 以下の設定はwebpack.config.jsのおいてあるディレクトリにあるdistというディレクトリに対して
+  // ファイル名index.jsで出力する。
   // また、変換する際はJavaScript内に書かれている相対パスのリソースげ自動的にdist/を追加してくれる
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index.js",
     // ややこしいらしいので飛ばす
-    publicPath: "dist/",
+    publicPath: "/dist/",
   },
+  //hot:ファイルを変更すると自動的にブラウザに反映させるフラグ
+  //open:起動時にブラウザで開くフラグ
+  devServer: {
+    hot: true,
+    open: true,
+  },
+  //   performance: {
+  //     maxEntrypointSize: [500000],
+  //     maxAssetSize: [500000],
+  //   },
+
+  performance: { hints: false },
 };
