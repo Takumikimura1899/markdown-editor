@@ -4,10 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="./manifest.json" />
     <title>Markdown Editor</title>
   </head>
   <body>
     <div id="app"></div>
     <script src="./dist/index.js"></script>
+    <script type="text/javascript">
+      // ブラウザにサービスワーカーが実装されているかチェックする。
+      if ("serviceWorker" in navigator) {
+        // ページのロードが完了したときに実行する関数を登録
+        window.addEventListener("load", () => {
+          // ここがサービスワーカーを登録する処理。register()にはサービスワーカーのパスを渡す。
+          // サービスワーカーの登録が完了とエラー時の処理を登録している。コンソールにメッセージを表示する処理を書いている。
+          // 成功時に出力しているregistration.scopeはサービスワーカーのスコープサービスワーカーが配置されているパスでそのパスの配下しかサービスワーカーは干渉出来ない。
+          navigator.serviceWorker.register("./sw.js").then(
+            (registration) => {
+              console.log(
+                "ServiceWorker registration successful with scope: ",
+                registration.scope
+              );
+            },
+            (err) => {
+              console.log("ServiceWorker registration failed: ", err);
+            }
+          );
+        });
+      }
+    </script>
   </body>
 </html>
