@@ -1,6 +1,5 @@
 import * as React from "react";
 import { render } from "react-dom";
-import styled from "styled-components";
 import { createGlobalStyle } from "styled-components";
 import { Editor } from "./pages/editor";
 // HashRouter as Routerはエイリアスの記法でHashRouterという要素をRouterという名前で扱うという意味。
